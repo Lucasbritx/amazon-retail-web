@@ -1,3 +1,5 @@
+import { NextApiRequest } from "next";
+
 const PRODUCTS = [
   {
     id: 1,
@@ -19,9 +21,10 @@ const PRODUCTS = [
   },
 ];
 
-export async function GET(req: Request) {
+export async function GET(req: NextApiRequest) {
   try {
-    const { id } = await req.json();
+    const id = req.query?.id;
+    console.log("ID - ", id);
     if (id) {
       const product = PRODUCTS.find((product) => product.id === id);
       if (product) {
@@ -36,6 +39,7 @@ export async function GET(req: Request) {
       });
     }
   } catch (err) {
+    console.log("ERROR - ", err);
     return new Response(JSON.stringify({ error: "Invalid request" }), {
       status: 400,
     });
