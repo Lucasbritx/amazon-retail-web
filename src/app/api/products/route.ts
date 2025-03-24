@@ -1,23 +1,24 @@
 import { NextApiRequest } from "next";
+const RANDOM_IMG_URL = "https://picsum.photos/200/300";
 
 const PRODUCTS = [
   {
     id: 1,
     name: "Product 1",
     price: 100,
-    img: "https://via.placeholder.com/150",
+    img: RANDOM_IMG_URL,
   },
   {
     id: 2,
     name: "Product 2",
     price: 200,
-    img: "https://via.placeholder.com/150",
+    img: RANDOM_IMG_URL,
   },
   {
     id: 3,
     name: "Product 3",
     price: 300,
-    img: "https://via.placeholder.com/150",
+    img: RANDOM_IMG_URL,
   },
 ];
 

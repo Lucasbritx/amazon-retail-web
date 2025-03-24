@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
+import "./globals.css";
 
 export default function Home() {
-  const [products, setProducts] = useState("");
+  const [products, setProducts] = useState<any>([]);
 
   const getProducts = async () => {
     const res = await fetch("/api/products", {
@@ -20,6 +21,7 @@ export default function Home() {
       body: JSON.stringify({ id }),
     });
     const data = await res.json();
+    return data;
   };
 
   useEffect(() => {
@@ -30,6 +32,20 @@ export default function Home() {
     <div className="container">
       <h1>Amazon Retail</h1>
       <p>POC for Amazon Retail</p>
+      {products.length && (
+        <div className="flex gap-1">
+          {products?.map((product: any) => (
+            <div key={product.id} className="product">
+              <img src={product.img} alt={product.name} />
+              <p>{product.name}</p>
+              <p>{product.price}</p>
+              <button onClick={() => getProduct(product.id)}>
+                Get Product
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
