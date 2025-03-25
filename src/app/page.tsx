@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import "./globals.css";
+import Card from "@/components/Card";
 
 export default function Home() {
   const [products, setProducts] = useState<any>([]);
@@ -35,14 +36,14 @@ export default function Home() {
       {products.length && (
         <div className="flex gap-1">
           {products?.map((product: any) => (
-            <div key={product.id} className="product">
-              <img src={product.img} alt={product.name} />
-              <p>{product.name}</p>
-              <p>{product.price}</p>
-              <button onClick={() => getProduct(product.id)}>
-                Get Product
-              </button>
-            </div>
+            <Card
+              key={product.id}
+              id={product.id}
+              img={product.img}
+              name={product.name}
+              price={product.price}
+              onClick={getProduct}
+            />
           ))}
         </div>
       )}
