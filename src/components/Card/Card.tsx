@@ -16,7 +16,7 @@ const Card = ({id, img, name, price, onClick}: CardProps) => {
       <img src={img} alt={name} />
       <p>{name}</p>
       <p>{price}</p>
-      <button className="text-red-500" onClick={() => onClick(id)}>{BUTTON_TEXT}</button>
+      <button className="" onClick={() => onClick(id)}>{BUTTON_TEXT}</button>
     </div>
   );
 };
