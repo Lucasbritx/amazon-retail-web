@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button";
+import Image from "next/image";
 
 interface CardProps {
   id: number;
@@ -26,9 +27,9 @@ const Card = ({ id, img, name, price, onClick }: CardProps) => {
 
   return (
     <div key={id} className="product border rounded-md shadow-md">
-      <img src={img} alt={name} />
+      <img src={img} alt={name} className="w-full" />
       <p>{name}</p>
-      <p>{price}</p>
+      <p>R$ {price}</p>
       <div className="flex gap-2">
         <Button onClick={() => onClick(id)} text={BUTTON_TEXT} />
         <Button onClick={addToCart} text={ADD_TO_CART_TEXT} />
