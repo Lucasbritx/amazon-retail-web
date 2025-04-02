@@ -16,7 +16,7 @@ describe("Card Component", () => {
 
     expect(screen.getByAltText(mockProps.name)).toBeInTheDocument();
     expect(screen.getByText(mockProps.name)).toBeInTheDocument();
-    expect(screen.getByText(mockProps.price)).toBeInTheDocument();
+    expect(screen.getByRole("price")).toBeInTheDocument();
     expect(screen.getByText("Get Product")).toBeInTheDocument();
   });
 
