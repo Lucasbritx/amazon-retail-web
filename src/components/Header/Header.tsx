@@ -5,10 +5,14 @@ import Input from "../Input";
 import Link from "next/link";
 
 const Header: React.FC = () => {
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cartLength = cart.length;
+
+
   const BUTTONS = [
     { text: "Home", onClick: () => {}, href: "/" },
     { text: "Products", onClick: () => {}, href: "/products" },
-    { text: "Cart", onClick: () => {}, href: "/cart" },
+    { text: `Cart (${cartLength})`, onClick: () => {}, href: "/cart" },
     { text: "Profile", onClick: () => {}, href: "/profile" },
     { text: "Orders", onClick: () => {}, href: "/orders" },
     { text: "Logout", onClick: () => {}, href: "/logout" },
