@@ -1,14 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import Card from "@/components/Card";
+import { getCart } from "../utils/getCart";
 
 export default function Cart() {
   const [cart, setCart] = useState<any>([]);
-
-  const getCart = async () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCart(cart);
-  };
 
   const deleteFromCart = (id: number) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -18,7 +14,10 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    getCart();
+    const newCart = getCart();
+    newCart.then((res) => {
+      setCart(res);
+    });
   }, []);
 
   return (
