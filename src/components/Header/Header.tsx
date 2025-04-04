@@ -19,11 +19,11 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <div className="w-full h-16 bg-gray-800 text-white flex items-center justify-between px-4 mb-3">
+    <div className="w-full h-20 bg-gray-800 text-white flex items-center justify-between px-4 py-2 mb-3">
       <img
         src="/Amazon_logo.png"
         alt="Amazon Logo"
-        className="w-48 h-16"
+        className="w-40 h-11"
       />
       <Input
         placeholder="Search for products..."
