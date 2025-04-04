@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   return (
     <div className="w-full h-16 bg-gray-800 text-white flex items-center justify-between px-4 mb-3">
       <img
-        src="/Amazon_logo.webp"
+        src="/Amazon_logo.png"
         alt="Amazon Logo"
         className="w-48 h-16"
       />
