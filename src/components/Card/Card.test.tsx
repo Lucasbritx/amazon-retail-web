@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Card from "./Card";
+import { CartProvider } from "@/context/CartContext";
 
 describe("Card Component", () => {
   const mockProps = {
@@ -11,8 +12,12 @@ describe("Card Component", () => {
     onClick: jest.fn(),
   };
 
+  const withProviders = (ui: React.ReactNode) => {
+      return render(<CartProvider>{ui}</CartProvider>);
+    };
+
   it("renders correctly with given props", () => {
-    render(<Card {...mockProps} />);
+    withProviders(<Card {...mockProps} />);
 
     expect(screen.getByAltText(mockProps.name)).toBeInTheDocument();
     expect(screen.getByText(mockProps.name)).toBeInTheDocument();
@@ -21,7 +26,7 @@ describe("Card Component", () => {
   });
 
   it("calls onClick with the correct id when the button is clicked", () => {
-    render(<Card {...mockProps} />);
+    withProviders(<Card {...mockProps} />);
 
     const button = screen.getByText("Get Product");
     fireEvent.click(button);
