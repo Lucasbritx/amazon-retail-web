@@ -23,7 +23,7 @@ export default function Cart() {
   return (
     <div className="container">
       {cart.length && (
-        <div className="flex gap-1">
+        <div className="flex gap-2 p-4">
           {cart?.map((product: any) => (
             <Card
               key={product.id}
