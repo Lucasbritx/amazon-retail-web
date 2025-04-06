@@ -3,9 +3,10 @@
 import React from "react";
 import Input from "../Input";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 
 const Header: React.FC = () => {
-  const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const { cartItems: cart } = useCart();
   const cartLength = cart.length;
 
   const BUTTONS = [

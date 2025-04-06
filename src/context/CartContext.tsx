@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { CartContextType } from "@/types/CartContextType";
 import { Product } from "@/types/Product";
@@ -6,7 +6,9 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -23,11 +25,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const existing = prev.find((p) => p.id === product.id);
       if (existing) {
         return prev.map((p) =>
-          p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+          p.id === product.id
+            ? { ...p, quantity: p.quantity ? p.quantity + 1 : 0 }
+            : p
         );
       }
       return [...prev, { ...product, quantity: 1 }];
     });
+    alert("Product added to cart");
   };
 
   return (
