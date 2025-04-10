@@ -1,13 +1,15 @@
 import React from "react";
 
-interface ButtonProps {
-  onClick: () => void;
-  text: string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  text?: string;
 }
 
-const Button = ({ onClick, text }: ButtonProps) => {
+const Button = ({ text, ...props }: ButtonProps) => {
   return (
-    <button className="border p-2 rounded-md hover:opacity-50 cursor-pointer" onClick={onClick}>
+    <button
+      className="border p-2 rounded-md hover:opacity-50 cursor-pointer"
+      {...props}
+    >
       {text}
     </button>
   );
