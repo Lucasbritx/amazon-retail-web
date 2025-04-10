@@ -24,7 +24,7 @@ const PRODUCTS = [
 
 export async function GET(req: NextApiRequest) {
   try {
-    const id = req.query?.id;
+    const id = Number(req.query?.id);
     if (id) {
       const product = PRODUCTS.find((product) => product.id === id);
       if (product) {
