@@ -36,17 +36,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const deleteFromCart = (product: Product) => {
-    setCartItems((prev) => {
-      const existing = prev.find((p) => p.id === product.id);
-      if (existing) {
-        return prev.map((p) =>
-          p.id === product.id
-            ? { ...p, quantity: p.quantity ? p.quantity - 1 : 0 }
-            : p
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
+    setCartItems((prev) => prev.filter((p) => p.id !== product.id));
     alert("Product removed from cart");
   };
 
