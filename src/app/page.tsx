@@ -2,8 +2,11 @@
 import { useEffect, useState } from "react";
 import "./globals.css";
 import Card from "@/components/Card";
+import { useCart } from "@/context/CartContext";
 
 export default function Home() {
+    const { addToCart } = useCart();
+  
   const [products, setProducts] = useState<any>([]);
 
   const getProducts = async () => {
@@ -40,7 +43,8 @@ export default function Home() {
               img={product.img}
               name={product.name}
               price={product.price}
-              onClick={getProduct}
+              onClick={addToCart}
+              buttonText="Add to cart"
             />
           ))}
         </div>

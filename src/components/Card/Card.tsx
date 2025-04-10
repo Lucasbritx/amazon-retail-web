@@ -1,20 +1,17 @@
 import React from "react";
 import Button from "../Button";
-import { useCart } from "@/context/CartContext";
+import { Product } from "@/types/Product";
 
 interface CardProps {
   id: number;
   img: string;
   name: string;
   price: number;
-  onClick: (id: number) => void;
+  onClick: (arg: any) => void;
+  buttonText: string;
 }
 
-const BUTTON_TEXT = "Get Product";
-const ADD_TO_CART_TEXT = "Add to Cart";
-
-const Card = ({ id, img, name, price, onClick }: CardProps) => {
-  const { addToCart } = useCart();
+const Card = ({ id, img, name, price, onClick, buttonText }: CardProps) => {
 
   const product = {
     id,
@@ -31,9 +28,8 @@ const Card = ({ id, img, name, price, onClick }: CardProps) => {
         <p id="price" role="price">
           R$ {price}
         </p>
-        <div className="flex gap-2">
-          <Button onClick={() => onClick(id)} text={BUTTON_TEXT} />
-          <Button onClick={() => addToCart(product)} text={ADD_TO_CART_TEXT} />
+        <div className="flex gap-2 justify-center mt-1">
+          <Button onClick={() => onClick(product)} text={buttonText} />
         </div>
       </div>
     </div>

@@ -32,6 +32,7 @@ export default function Cart() {
               name={product.name}
               price={product.price}
               onClick={deleteFromCart}
+              buttonText="Remove from cart"
             />
           ))}
         </div>
