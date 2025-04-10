@@ -10,11 +10,12 @@ describe("Card Component", () => {
     name: "Test Product",
     price: 100,
     onClick: jest.fn(),
+    buttonText: "Get Product",
   };
 
   const withProviders = (ui: React.ReactNode) => {
-      return render(<CartProvider>{ui}</CartProvider>);
-    };
+    return render(<CartProvider>{ui}</CartProvider>);
+  };
 
   it("renders correctly with given props", () => {
     withProviders(<Card {...mockProps} />);
@@ -25,13 +26,18 @@ describe("Card Component", () => {
     expect(screen.getByText("Get Product")).toBeInTheDocument();
   });
 
-  it("calls onClick with the correct id when the button is clicked", () => {
+  it("calls onClick with the correctly when the button is clicked", () => {
     withProviders(<Card {...mockProps} />);
 
     const button = screen.getByText("Get Product");
     fireEvent.click(button);
 
     expect(mockProps.onClick).toHaveBeenCalledTimes(1);
-    expect(mockProps.onClick).toHaveBeenCalledWith(mockProps.id);
+    expect(mockProps.onClick).toHaveBeenCalledWith({
+      id: mockProps.id,
+      name: mockProps.name,
+      price: mockProps.price,
+      img: mockProps.img,
+    });
   });
 });

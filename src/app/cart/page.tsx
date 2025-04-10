@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import Card from "@/components/Card";
 import { getCart } from "../utils/getCart";
+import { Product } from "@/types/Product";
 
 export default function Cart() {
   const [cart, setCart] = useState<any>([]);
 
-  const deleteFromCart = (id: number) => {
+  const deleteFromCart = (product: Product) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const updatedCart = cart.filter((item: any) => item.id !== id);
+    const updatedCart = cart.filter((item: any) => item.id !== product.id);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
   };

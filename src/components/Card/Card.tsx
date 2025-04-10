@@ -7,7 +7,7 @@ interface CardProps {
   img: string;
   name: string;
   price: number;
-  onClick: (arg: any) => void;
+  onClick: (product: Product) => void;
   buttonText: string;
 }
 
