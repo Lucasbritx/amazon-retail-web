@@ -35,8 +35,23 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     alert("Product added to cart");
   };
 
+  const deleteFromCart = (product: Product) => {
+    setCartItems((prev) => {
+      const existing = prev.find((p) => p.id === product.id);
+      if (existing) {
+        return prev.map((p) =>
+          p.id === product.id
+            ? { ...p, quantity: p.quantity ? p.quantity - 1 : 0 }
+            : p
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+    alert("Product removed from cart");
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, deleteFromCart }}>
       {children}
     </CartContext.Provider>
   );
