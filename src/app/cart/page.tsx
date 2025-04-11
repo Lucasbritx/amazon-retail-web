@@ -45,6 +45,9 @@ export default function Cart() {
         </div>
       )}
       <Button
+        className="absolute bottom-0 right-0 m-4 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
+        type="button"
+        disabled={cart.length === 0}
         onClick={() => {
           submitOrder();
         }}
