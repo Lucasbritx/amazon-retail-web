@@ -7,13 +7,13 @@ describe("Button Component", () => {
   const buttonText = "Buy Now";
 
   it("renders correctly with the given text", () => {
-    render(<Button onClick={mockOnClick} text={buttonText} />);
+    render(<Button onClick={mockOnClick} children={buttonText} />);
 
     expect(screen.getByText(buttonText)).toBeInTheDocument();
   });
 
   it("calls onClick when the button is clicked", () => {
-    render(<Button onClick={mockOnClick} text={buttonText} />);
+    render(<Button onClick={mockOnClick} children={buttonText} />);
 
     const button = screen.getByText(buttonText);
     fireEvent.click(button);

@@ -29,7 +29,7 @@ const Card = ({ id, img, name, price, onClick, buttonText }: CardProps) => {
           R$ {price}
         </p>
         <div className="flex gap-2 justify-center mt-1">
-          <Button onClick={() => onClick(product)} text={buttonText} />
+          <Button onClick={() => onClick(product)} children={buttonText} />
         </div>
       </div>
     </div>
