@@ -3,33 +3,17 @@ import { useEffect, useState } from "react";
 import "./globals.css";
 import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
+import { getProducts } from "./service/getProducts";
 
 export default function Home() {
-    const { addToCart } = useCart();
-  
+  const { addToCart } = useCart();
+
   const [products, setProducts] = useState<any>([]);
 
-  const getProducts = async () => {
-    const res = await fetch("/api/products", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await res.json();
-    setProducts(data.products);
-  };
-
-  const getProduct = async (id: number) => {
-    const res = await fetch("/api/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    const data = await res.json();
-    return data;
-  };
-
   useEffect(() => {
-    getProducts();
+    getProducts().then((res) => {
+      setProducts(res);
+    });
   }, []);
 
   return (
