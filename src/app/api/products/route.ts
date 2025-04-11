@@ -20,6 +20,12 @@ const PRODUCTS = [
     price: 300,
     img: RANDOM_IMG_URL,
   },
+  {
+    id: 4,
+    name: "New Product",
+    price: 100,
+    img: RANDOM_IMG_URL,
+  },
 ];
 
 export async function GET(req: NextApiRequest) {
