@@ -1,4 +1,5 @@
 import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 const ORDERS = [
   {
@@ -24,39 +25,39 @@ export async function GET(req: NextApiRequest) {
     if (id) {
       const order = ORDERS.find((order) => order.id === id);
       if (order) {
-        return new Response(JSON.stringify({ order }), { status: 200 });
+        return new NextResponse(JSON.stringify({ order }), { status: 200 });
       }
-      return new Response(JSON.stringify({ error: "Order not found" }), {
+      return new NextResponse(JSON.stringify({ error: "Order not found" }), {
         status: 404,
       });
     } else {
-      return new Response(JSON.stringify({ orders: ORDERS }), {
+      return new NextResponse(JSON.stringify({ orders: ORDERS }), {
         status: 200,
       });
     }
   } catch (err) {
     console.log("ERROR - ", err);
-    return new Response(JSON.stringify({ error: "Invalid request" }), {
+    return new NextResponse(JSON.stringify({ error: "Invalid request" }), {
       status: 400,
     });
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     if (body.length) {
       const id = ORDERS.length + 1;
       ORDERS.push({ id, items: body });
-      return new Response(JSON.stringify({ id }), { status: 201 });
+      return new NextResponse(JSON.stringify({ id }), { status: 201 });
     } else {
-      return new Response(JSON.stringify({ error: "Invalid request" }), {
+      return new NextResponse(JSON.stringify({ error: "Invalid request" }), {
         status: 400,
       });
     }
   } catch (err) {
     console.log("ERROR - ", err);
-    return new Response(JSON.stringify({ error: "Invalid request" }), {
+    return new NextResponse(JSON.stringify({ error: "Invalid request" }), {
       status: 400,
     });
   }
