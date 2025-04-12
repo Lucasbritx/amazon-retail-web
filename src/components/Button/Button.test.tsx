@@ -9,13 +9,15 @@ describe("Button Component", () => {
   it("renders correctly with the given text", () => {
     render(<Button onClick={mockOnClick} children={buttonText} />);
 
-    expect(screen.getByText(buttonText)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: buttonText })
+    ).toBeInTheDocument();
   });
 
   it("calls onClick when the button is clicked", () => {
     render(<Button onClick={mockOnClick} children={buttonText} />);
 
-    const button = screen.getByText(buttonText);
+    const button = screen.getByRole("button", { name: buttonText });
     fireEvent.click(button);
 
     expect(mockOnClick).toHaveBeenCalledTimes(1);
