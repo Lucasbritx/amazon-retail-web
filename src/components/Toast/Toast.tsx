@@ -67,7 +67,7 @@ const Toast = (props: ToastProps) => {
   }, [isOpen, onClose]);
   return (
     <div
-      className={`fixed bottom-4 right-4 p-4 rounded-md shadow-lg transition-transform duration-300 ${
+      className={`fixed top-24 right-4 p-4 rounded-md shadow-lg transition-transform duration-300 ${
         isOpen ? "translate-y-0" : "translate-y-full"
       } ${
         type === TOAST_TYPES.SUCCESS
@@ -75,7 +75,9 @@ const Toast = (props: ToastProps) => {
           : type === TOAST_TYPES.ERROR
           ? "bg-red-500 text-white"
           : "bg-blue-500 text-white"
-      }`}
+      }
+      ${isOpen ? "opacity-100" : "opacity-0"}
+      `}
       onClick={onClose}
       onAnimationEnd={onClose}
       style={{

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/Product";
@@ -9,6 +9,7 @@ import { TOAST_TYPES } from "@/components/Toast/Toast";
 
 export default function Cart() {
   const { cartItems, deleteFromCart } = useCart();
+  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
 
   const submitOrder = async () => {
     const res = await fetch("/api/orders", {
@@ -17,6 +18,14 @@ export default function Cart() {
       body: JSON.stringify(cartItems),
     });
     const data = await res.json();
+    if (res.status === 201) {
+      setIsSubmitSuccessful(true);
+      setTimeout(() => {
+        setIsSubmitSuccessful(false);
+      }, 3000);
+    } else {
+      setIsSubmitSuccessful(false);
+    }
     return data;
   };
 
@@ -47,7 +56,13 @@ export default function Cart() {
       >
         Submit Order
       </Button>
-      <Toast title="Sucesso!" type={TOAST_TYPES.SUCCESS}/>
+      <Toast
+        title="Sucesso!"
+        type={TOAST_TYPES.SUCCESS}
+        isOpen={isSubmitSuccessful}
+        onClose={() => setIsSubmitSuccessful(false)}
+        description="Your order has been placed successfully!"
+      />
     </div>
   );
 }
