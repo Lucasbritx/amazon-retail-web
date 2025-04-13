@@ -1,10 +1,17 @@
 import React from "react";
 
+export const TOAST_TYPES = {
+  SUCCESS: "success",
+  ERROR: "error",
+  INFO: "info",
+} as const;
+export type ToastType = (typeof TOAST_TYPES)[keyof typeof TOAST_TYPES];
+
 type ToastProps = React.ComponentProps<"div"> & {
   title?: string;
   description?: string;
   duration?: number;
-  type?: "success" | "error" | "info";
+  type?: ToastType;
   onClose?: () => void;
   isOpen?: boolean;
 };
@@ -13,7 +20,7 @@ const defaultProps = {
   title: "",
   description: "",
   duration: 3000,
-  type: "info",
+  type: TOAST_TYPES.INFO,
   onClose: () => {},
   isOpen: false,
 };
@@ -63,9 +70,9 @@ const Toast = (props: ToastProps) => {
       className={`fixed bottom-4 right-4 p-4 rounded-md shadow-lg transition-transform duration-300 ${
         isOpen ? "translate-y-0" : "translate-y-full"
       } ${
-        type === "success"
+        type === TOAST_TYPES.SUCCESS
           ? "bg-green-500 text-white"
-          : type === "error"
+          : type === TOAST_TYPES.ERROR
           ? "bg-red-500 text-white"
           : "bg-blue-500 text-white"
       }`}

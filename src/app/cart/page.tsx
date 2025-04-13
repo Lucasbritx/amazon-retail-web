@@ -4,6 +4,8 @@ import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/Product";
 import Button from "@/components/Button";
+import Toast from "@/components/Toast";
+import { TOAST_TYPES } from "@/components/Toast/Toast";
 
 export default function Cart() {
   const { cartItems, deleteFromCart } = useCart();
@@ -45,6 +47,7 @@ export default function Cart() {
       >
         Submit Order
       </Button>
+      <Toast title="Sucesso!" type={TOAST_TYPES.SUCCESS}/>
     </div>
   );
 }
