@@ -4,8 +4,8 @@ import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/Product";
 import Button from "@/components/Button";
-import { TOAST_TYPES } from "@/components/Toast/Toast";
 import { useToastContext } from "@/components/Toast/ToastContext";
+import { TOAST_TYPES } from "@/constants/TOAST_TYPES";
 
 export default function Cart() {
   const { cartItems, deleteFromCart } = useCart();

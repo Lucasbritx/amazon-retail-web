@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Toast, { TOAST_TYPES } from "./Toast";
+import Toast from "./Toast";
+import { TOAST_TYPES } from "@/constants/TOAST_TYPES";
 
 const mockToastProps = {
   title: "Test Title",

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TOAST_TYPES } from "./Toast";
 import { ToastProps } from "./ToastProps";
+import { TOAST_TYPES } from "@/constants/TOAST_TYPES";
 
 const useToast = () => {
   const [toastProps, setToastProps] = useState<ToastProps>({

@@ -1,13 +1,7 @@
 "use client";
 import React from "react";
 import { ToastProps } from "./ToastProps";
-
-// TODO create constants for toast types
-export const TOAST_TYPES = {
-  SUCCESS: "success",
-  ERROR: "error",
-  INFO: "info",
-} as const;
+import { TOAST_TYPES } from "@/constants/TOAST_TYPES";
 
 const defaultProps = {
   title: "",
