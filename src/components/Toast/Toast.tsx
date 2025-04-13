@@ -67,6 +67,7 @@ const Toast = (props: ToastProps) => {
   }, [isOpen, onClose]);
   return (
     <div
+      role="toast"
       className={`fixed top-24 right-4 p-4 rounded-md shadow-lg transition-transform duration-300 ${
         isOpen ? "translate-y-0" : "translate-y-full"
       } ${
