@@ -1,15 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { Product } from "@/types/Product";
 import Button from "@/components/Button";
-import Toast from "@/components/Toast";
 import { TOAST_TYPES } from "@/components/Toast/Toast";
+import { useToastContext } from "@/components/Toast/ToastContext";
 
 export default function Cart() {
   const { cartItems, deleteFromCart } = useCart();
-  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+  const { clearToast, toastProps, setToastProps } = useToastContext();
 
   const submitOrder = async () => {
     const res = await fetch("/api/orders", {
@@ -19,18 +19,34 @@ export default function Cart() {
     });
     const data = await res.json();
     if (res.status === 201) {
-      setIsSubmitSuccessful(true);
+      setToastProps({
+        ...toastProps,
+        title: "Success!",
+        description: "Your order has been placed successfully!",
+        type: TOAST_TYPES.SUCCESS,
+        isOpen: true,
+      });
       setTimeout(() => {
-        setIsSubmitSuccessful(false);
+        clearToast();
       }, 3000);
     } else {
-      setIsSubmitSuccessful(false);
+      setToastProps({
+        ...toastProps,
+        title: "Error!",
+        description: data.message,
+        type: TOAST_TYPES.ERROR,
+        isOpen: true,
+      });
+      setTimeout(() => {
+        clearToast();
+      }, 3000);
+      throw new Error(data.message);
     }
     return data;
   };
 
   return (
-    <div className="relative">
+    <div>
       {cartItems.length && (
         <div className="flex gap-2 p-4">
           {cartItems?.map((product: Product) => (
@@ -56,13 +72,6 @@ export default function Cart() {
       >
         Submit Order
       </Button>
-      <Toast
-        title="Sucess!"
-        type={TOAST_TYPES.SUCCESS}
-        isOpen={isSubmitSuccessful}
-        onClose={() => setIsSubmitSuccessful(false)}
-        description="Your order has been placed successfully!"
-      />
     </div>
   );
 }

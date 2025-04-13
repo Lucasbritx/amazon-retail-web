@@ -1,14 +1,16 @@
 "use client";
 
-import { CartContextType } from "@/types/CartContextType";
-import { Product } from "@/types/Product";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { Product } from "@/types/Product";
+import { CartContextType } from "@/types/CartContextType";
+import { useToastContext } from "@/components/Toast/ToastContext";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const { setToastProps, clearToast } = useToastContext();
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -32,12 +34,28 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       return [...prev, { ...product, quantity: 1 }];
     });
-    alert("Product added to cart");
+    setToastProps({
+      title: "Success!",
+      description: `${product.name} has been added to your cart.`,
+      type: "success",
+      isOpen: true,
+    });
+    setTimeout(() => {
+      clearToast();
+    }, 3000);
   };
 
   const deleteFromCart = (product: Product) => {
     setCartItems((prev) => prev.filter((p) => p.id !== product.id));
-    alert("Product removed from cart");
+    setToastProps({
+      title: "Success!",
+      description: `${product.name} has been removed from your cart.`,
+      type: "success",
+      isOpen: true,
+    });
+    setTimeout(() => {
+      clearToast();
+    }, 3000);
   };
 
   return (

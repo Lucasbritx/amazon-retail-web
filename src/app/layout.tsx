@@ -1,11 +1,7 @@
+"use client";
 import Header from "@/components/Header";
+import { ToastProvider } from "@/components/Toast/ToastContext";
 import { CartProvider } from "@/context/CartContext";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Amazon Retail",
-  description: "POC for Amazon Retail",
-};
 
 export default function RootLayout({
   children,
@@ -15,10 +11,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <CartProvider>
-          <Header />
-          {children}
-        </CartProvider>
+        <ToastProvider>
+          <CartProvider>
+            <Header />
+            {children}
+          </CartProvider>
+        </ToastProvider>
       </body>
     </html>
   );

@@ -1,20 +1,13 @@
+"use client";
 import React from "react";
+import { ToastProps } from "./ToastProps";
 
+// TODO create constants for toast types
 export const TOAST_TYPES = {
   SUCCESS: "success",
   ERROR: "error",
   INFO: "info",
 } as const;
-export type ToastType = (typeof TOAST_TYPES)[keyof typeof TOAST_TYPES];
-
-type ToastProps = React.ComponentProps<"div"> & {
-  title?: string;
-  description?: string;
-  duration?: number;
-  type?: ToastType;
-  onClose?: () => void;
-  isOpen?: boolean;
-};
 
 const defaultProps = {
   title: "",
