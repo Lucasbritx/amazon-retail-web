@@ -57,7 +57,7 @@ export default function Cart() {
         Submit Order
       </Button>
       <Toast
-        title="Sucesso!"
+        title="Sucess!"
         type={TOAST_TYPES.SUCCESS}
         isOpen={isSubmitSuccessful}
         onClose={() => setIsSubmitSuccessful(false)}
