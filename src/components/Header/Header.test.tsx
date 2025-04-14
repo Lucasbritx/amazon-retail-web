@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Header from "./Header";
 import { CartProvider } from "@/context/CartContext";
+import { ToastProvider } from "../Toast/ToastContext";
 
 describe("Header component", () => {
   beforeEach(() => {
@@ -9,7 +10,11 @@ describe("Header component", () => {
   });
 
   const withProviders = (ui: React.ReactNode) => {
-    return render(<CartProvider>{ui}</CartProvider>);
+    return render(
+      <ToastProvider>
+        <CartProvider>{ui}</CartProvider>
+      </ToastProvider>
+    );
   };
 
   test("renders header image", () => {
@@ -49,9 +54,7 @@ describe("Header component", () => {
   });
 
   test("renders cart correctly without items", () => {
-    Storage.prototype.getItem = jest.fn(() =>
-      JSON.stringify([])
-    );
+    Storage.prototype.getItem = jest.fn(() => JSON.stringify([]));
     withProviders(<Header />);
 
     expect(screen.getByText("Cart")).toBeInTheDocument();

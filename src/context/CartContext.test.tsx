@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, act } from "@testing-library/react";
 import { CartProvider, useCart } from "./CartContext";
 import { Product } from "@/types/Product";
+import { ToastProvider } from "@/components/Toast/ToastContext";
 
 const product: Product = {
   id: 1,
@@ -39,9 +40,11 @@ describe("CartContext", () => {
     window.alert = jest.fn();
 
     render(
-      <CartProvider>
-        <TestComponent />
-      </CartProvider>
+      <ToastProvider>
+        <CartProvider>
+          <TestComponent />
+        </CartProvider>
+      </ToastProvider>
     );
 
     const button = screen.getByText("Add");

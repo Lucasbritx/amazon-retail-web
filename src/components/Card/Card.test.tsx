@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Card from "./Card";
 import { CartProvider } from "@/context/CartContext";
+import { ToastProvider } from "../Toast/ToastContext";
 
 describe("Card Component", () => {
   const mockProps = {
@@ -14,7 +15,11 @@ describe("Card Component", () => {
   };
 
   const withProviders = (ui: React.ReactNode) => {
-    return render(<CartProvider>{ui}</CartProvider>);
+    return render(
+      <ToastProvider>
+        <CartProvider>{ui}</CartProvider>
+      </ToastProvider>
+    );
   };
 
   it("renders correctly with given props", () => {
