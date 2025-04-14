@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, getByRole } from "@testing-library/react";
 import { CartProvider, useCart } from "./CartContext";
 import { Product } from "@/types/Product";
 import { ToastProvider } from "@/components/Toast/ToastContext";
@@ -55,7 +55,12 @@ describe("CartContext", () => {
 
     const count = screen.getByTestId("cart-count");
     expect(count.textContent).toBe("1");
-    expect(window.alert).toHaveBeenCalledWith("Product added to cart");
+    expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(
+      "Success!"
+    );
+    expect(screen.getByRole("paragraph")).toHaveTextContent(
+      "Test Product has been added to your cart."
+    );
 
     const stored = JSON.parse(localStorage.getItem("cart") || "[]");
     expect(stored.length).toBe(1);
@@ -67,9 +72,11 @@ describe("CartContext", () => {
     localStorage.setItem("cart", JSON.stringify(mockCart));
 
     render(
-      <CartProvider>
-        <TestComponent />
-      </CartProvider>
+      <ToastProvider>
+        <CartProvider>
+          <TestComponent />
+        </CartProvider>
+      </ToastProvider>
     );
 
     const button = screen.getByText("Remove from cart");
@@ -80,7 +87,12 @@ describe("CartContext", () => {
 
     const count = screen.getByTestId("cart-count");
     expect(count.textContent).toBe("0");
-    expect(window.alert).toHaveBeenCalledWith("Product removed from cart");
+    expect(screen.getByRole("heading", { level: 4 })).toHaveTextContent(
+      "Success!"
+    );
+    expect(screen.getByRole("paragraph")).toHaveTextContent(
+      "Test Product has been removed from your cart."
+    );
 
     const stored = JSON.parse(localStorage.getItem("cart") || "[]");
     expect(stored.length).toBe(0);
