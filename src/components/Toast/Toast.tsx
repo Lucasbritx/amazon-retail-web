@@ -69,7 +69,8 @@ const Toast = (props: ToastProps) => {
       onClick={onClose}
       onAnimationEnd={onClose}
       style={{
-        animation: isOpen ? "fadeIn 0.5s" : "fadeOut 0.5s",
+        animationName: isOpen ? "fadeIn" : "fadeOut",
+        animationDuration: "0.5s",
         animationFillMode: "forwards",
       }}
     >
