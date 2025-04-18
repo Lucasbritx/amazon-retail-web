@@ -53,31 +53,32 @@ const Toast = (props: ToastProps) => {
     }
   }, [isOpen, onClose]);
   return (
-    <div
-      role="toast"
-      className={`fixed top-24 right-4 p-4 rounded-md shadow-lg transition-transform duration-300 ${
-        isOpen ? "translate-y-0" : "translate-y-full"
-      } ${
-        type === TOAST_TYPES.SUCCESS
-          ? "bg-green-500 text-white"
-          : type === TOAST_TYPES.ERROR
-          ? "bg-red-500 text-white"
-          : "bg-blue-500 text-white"
-      }
-      ${isOpen ? "opacity-100" : "opacity-0"}
+    isOpen && (
+      <div
+        role="toast"
+        className={`fixed top-24 right-4 p-4 rounded-md shadow-lg transition-transform duration-300 ${
+          isOpen ? "translate-y-0" : "translate-y-full"
+        } ${
+          type === TOAST_TYPES.SUCCESS
+            ? "bg-green-500 text-white"
+            : type === TOAST_TYPES.ERROR
+            ? "bg-red-500 text-white"
+            : "bg-blue-500 text-white"
+        }
       `}
-      onClick={onClose}
-      onAnimationEnd={onClose}
-      style={{
-        animationName: isOpen ? "fadeIn" : "fadeOut",
-        animationDuration: "0.5s",
-        animationFillMode: "forwards",
-      }}
-    >
-      {title && <h4 className="font-bold">{title}</h4>}
-      {description && <p>{description}</p>}
-      {props.children}
-    </div>
+        onClick={onClose}
+        onAnimationEnd={onClose}
+        style={{
+          animationName: isOpen ? "fadeIn" : "fadeOut",
+          animationDuration: "0.5s",
+          animationFillMode: "forwards",
+        }}
+      >
+        {title && <h4 className="font-bold">{title}</h4>}
+        {description && <p>{description}</p>}
+        {props.children}
+      </div>
+    )
   );
 };
 

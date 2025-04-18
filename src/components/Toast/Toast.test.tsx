@@ -20,8 +20,8 @@ describe("Toast Component", () => {
   });
   test("not renders toast element", () => {
     render(<Toast {...mockToastProps} isOpen={false} />);
-    const toastElement = screen.getByRole("toast");
-    expect(toastElement).toHaveStyle("opacity: 0%");
+    const toastElement = screen.queryByRole("toast");
+    expect(toastElement).not.toBeInTheDocument();
   });
   test("renders toast element with the title correctly", () => {
     render(<Toast {...mockToastProps} />);
