@@ -5,6 +5,8 @@ import { Product } from "@/types/Product";
 import { getOrders } from "../service/getOrders";
 import { Order } from "@/types/Order";
 
+const REMOVE_FROM_CART = "Remove from cart";
+
 export default function Orders() {
   const [orders, setOrders] = useState<any>([]);
 
@@ -32,7 +34,7 @@ export default function Orders() {
                     name={product.name}
                     price={product.price}
                     onClick={() => {}}
-                    buttonText="Remove from cart"
+                    buttonText={REMOVE_FROM_CART}
                   />
                 ))}
               </div>
