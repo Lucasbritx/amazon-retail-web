@@ -1,15 +1,28 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Card from "@/components/Card";
-import { Product } from "@/types/Product";
+import React from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type Inputs = {
+  example: string;
+  exampleRequired: string;
+};
 
 export default function NewProduct() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
+  console.log(watch("example")); // watch input value by passing the name of it
 
   return (
-    <div className="relative">
-      <h2>Create a new product</h2>
-
-    </div>
+    <form className="container" onSubmit={handleSubmit(onSubmit)}>
+      <input defaultValue="test" {...register("example")} />
+      {errors.exampleRequired && <span className="text-red-500">This field is required</span>}
+      <input type="submit" />
+    </form>
   );
 }
