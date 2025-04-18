@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import { ToastProvider } from "@/components/Toast/ToastContext";
 import { CartProvider } from "@/context/CartContext";
+import "./globals.css";
 
 export default function RootLayout({
   children,

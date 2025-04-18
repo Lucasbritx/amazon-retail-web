@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import "./globals.css";
 import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { getProducts } from "./service/getProducts";
