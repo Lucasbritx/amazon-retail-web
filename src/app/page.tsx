@@ -4,6 +4,7 @@ import "./globals.css";
 import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { getProducts } from "./service/getProducts";
+import Button from "@/components/Button";
 
 export default function Home() {
   const { addToCart } = useCart();
@@ -33,6 +34,13 @@ export default function Home() {
           ))}
         </div>
       )}
+      <Button
+        className="absolute bottom-0 right-0 m-4"
+        onClick={() => {
+          window.location.href = "/newProduct";
+        }}>
+        Add New Product
+        </Button>
     </div>
   );
 }
