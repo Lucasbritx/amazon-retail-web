@@ -4,6 +4,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Input from "@/components/Input";
 
 const Product = z.object({
   name: z
@@ -59,15 +60,15 @@ export default function NewProduct() {
 
   return (
     <form className="container" onSubmit={handleSubmit(onSubmit)}>
-      <input defaultValue="Kindle" {...register("name")} />
+      <Input defaultValue="Kindle" {...register("name")} />
       {errors.name?.type === "required" && (
         <span className="text-red-500">Name is required</span>
       )}
-      <input type="number" defaultValue={199} {...register("price")} />
+      <Input type="number" defaultValue={199} {...register("price")} />
       {errors.price && (
         <span className="text-red-500">Price is required</span>
       )}
-      <input
+      <Input
         defaultValue="https://m.media-amazon.com/images/G/32/kindle/journeys/mdTfy5FzV17nneXV/NDQyODI5YWQt._CB545036651_.jpg"
         {...register("img")}
       />
