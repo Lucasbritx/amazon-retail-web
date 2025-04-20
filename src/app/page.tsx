@@ -17,9 +17,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="">
       {products.length && (
-        <div className="flex gap-2 p-4">
+        <div className="flex gap-2 p-4 flex-wrap">
           {products?.map((product: any) => (
             <Card
               key={product.id}

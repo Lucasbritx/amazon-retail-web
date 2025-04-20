@@ -21,7 +21,7 @@ const Card = ({ id, img, name, price, onClick, buttonText }: CardProps) => {
   };
 
   return (
-    <div key={id} className="product border rounded-md shadow-md">
+    <div key={id} className="product border rounded-md shadow-md w-[calc(25%-8px)]">
       <img src={img} alt={name} className="w-full" />
       <div className="p-2">
         <p>{name}</p>
