@@ -60,14 +60,14 @@ export default function NewProduct() {
   console.log(watch("name"));
 
   return (
-    <form className="container flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register("name")} />
+    <form className="flex flex-col p-4 gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <Input label="Name:" {...register("name")} />
       {errors.name?.type === "required" && (
         <span className="text-red-500">Name is required</span>
       )}
-      <Input type="number" {...register("price")} />
+      <Input label="Price:" type="number" {...register("price")} />
       {errors.price && <span className="text-red-500">Price is required</span>}
-      <Input {...register("img")} />
+      <Input label="Image url" {...register("img")} />
       {errors.img && <span className="text-red-500">Image is required</span>}
 
       <Button type="submit">Submit</Button>
