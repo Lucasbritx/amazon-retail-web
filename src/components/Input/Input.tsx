@@ -5,13 +5,14 @@ type InputProps = React.ComponentProps<"input"> & {
 };
 
 const Input = ({ ...props }: InputProps) => {
-  return (
+  const { className, ...rest } = props;
+  return props.label ? (
     <div className="flex flex-col mb-4">
-      {props.label && (
-        <label className="text-sm text-gray-700 mb-1">{props.label}</label>
-      )}
-      <input className="border p-2 rounded-md" {...props}></input>
+      <label className="text-sm text-gray-700 mb-1">{props.label}</label>
+      <input className="border p-2 rounded-md" {...rest}></input>
     </div>
+  ) : (
+    <input className="border p-2 rounded-md" {...rest}></input>
   );
 };
 
