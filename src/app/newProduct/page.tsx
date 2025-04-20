@@ -32,9 +32,9 @@ export default function NewProduct() {
   } = useForm<createProductFormData>({
     resolver: zodResolver(Product),
     defaultValues: {
-      name: "",
-      price: 0,
-      img: "",
+      name: "Kindle",
+      price: 1,
+      img: "https://m.media-amazon.com/images/G/32/kindle/journeys/mdTfy5FzV17nneXV/NDQyODI5YWQt._CB545036651_.jpg",
     },
   });
 
@@ -49,6 +49,7 @@ export default function NewProduct() {
     if (res) {
       const { id } = await res.json();
       console.log("Product created with id: ", id);
+      window.location.href = "/";
     } else {
       console.log("Error creating product");
     }
@@ -59,22 +60,15 @@ export default function NewProduct() {
   console.log(watch("name"));
 
   return (
-    <form className="container" onSubmit={handleSubmit(onSubmit)}>
-      <Input defaultValue="Kindle" {...register("name")} />
+    <form className="container flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+      <Input {...register("name")} />
       {errors.name?.type === "required" && (
         <span className="text-red-500">Name is required</span>
       )}
-      <Input type="number" defaultValue={199} {...register("price")} />
-      {errors.price && (
-        <span className="text-red-500">Price is required</span>
-      )}
-      <Input
-        defaultValue="https://m.media-amazon.com/images/G/32/kindle/journeys/mdTfy5FzV17nneXV/NDQyODI5YWQt._CB545036651_.jpg"
-        {...register("img")}
-      />
-      {errors.img && (
-        <span className="text-red-500">Image is required</span>
-      )}
+      <Input type="number" {...register("price")} />
+      {errors.price && <span className="text-red-500">Price is required</span>}
+      <Input {...register("img")} />
+      {errors.img && <span className="text-red-500">Image is required</span>}
 
       <Button type="submit">Submit</Button>
     </form>
