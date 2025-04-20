@@ -34,7 +34,7 @@ export default function Home() {
         </div>
       )}
       <Button
-        className="absolute bottom-0 right-0 m-4"
+        className="absolute bottom-0 right-0 m-4 bg-white hover:bg-gray-200 hover:opacity-100"
         onClick={() => {
           window.location.href = "/newProduct";
         }}>
