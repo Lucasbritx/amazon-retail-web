@@ -57,7 +57,7 @@ export default function NewProduct() {
   return (
     <form className="flex flex-col p-4 gap-2" onSubmit={handleSubmit(onSubmit)}>
       <Input label="Name:" {...register("name")} />
-      {errors.name?.type === "required" && (
+      {errors.name && (
         <span className="text-red-500">Name is required</span>
       )}
       <Input label="Price:" type="number" {...register("price")} />
