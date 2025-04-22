@@ -27,7 +27,6 @@ export default function NewProduct() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<createProductFormData>({
     resolver: zodResolver(Product),
