@@ -55,10 +55,6 @@ export default function NewProduct() {
     }
   };
 
-  console.log(errors);
-  console.log(watch());
-  console.log(watch("name"));
-
   return (
     <form className="flex flex-col p-4 gap-2" onSubmit={handleSubmit(onSubmit)}>
       <Input label="Name:" {...register("name")} />
