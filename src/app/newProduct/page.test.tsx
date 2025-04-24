@@ -91,6 +91,17 @@ describe("NewProduct Page", () => {
     });
 
     await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith("/api/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: "Kindle",
+          price: 1,
+          img: "https://m.media-amazon.com/images/G/32/kindle/journeys/mdTfy5FzV17nneXV/NDQyODI5YWQt._CB545036651_.jpg",
+        }),
+      });
       expect(screen.getByRole("paragraph")).toHaveTextContent(
         "Product created successfully!"
       );
