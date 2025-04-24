@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import NewProduct from "./page";
 
-describe("Card Component", () => {
+describe("NewProduct Page", () => {
   it("renders form with default values", () => {
     render(<NewProduct />);
     expect(screen.getByLabelText(/name/i)).toHaveValue("Kindle");
@@ -29,4 +29,23 @@ describe("Card Component", () => {
       expect(screen.getByText(/Image is required/i)).toBeInTheDocument();
     });
   });
+  it("shows error for invalid image URL", async () => {
+    render(<NewProduct />);
+
+    fireEvent.change(screen.getByLabelText(/image url/i), {
+      target: { value: "Invalid url" },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /submit/i }));
+
+    await waitFor(() => {
+        // fix this, why isn't working? test in browser
+      expect(screen.getByText(/Image is required/i)).toBeInTheDocument();
+    });
+  });
+  /* it("submits form with valid data", async () => {
+  mock fetch call
+ */
+/* it("logs error when fetch fails", async () => {
+ */
 });
