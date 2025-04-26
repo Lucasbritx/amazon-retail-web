@@ -19,13 +19,14 @@ const ORDERS = [
   },
 ];
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
   try {
-    const id = Number(req.query?.id);
+    const url = new URL(req.url);
+    const id = Number(url.searchParams.get("id"));
     if (id) {
       const order = ORDERS.find((order) => order.id === id);
       if (order) {
-        return new NextResponse(JSON.stringify({ order }), { status: 200 });
+        return new Response(JSON.stringify({ order }), { status: 200 });
       }
       return new NextResponse(JSON.stringify({ error: "Order not found" }), {
         status: 404,
@@ -43,7 +44,7 @@ export async function GET(req: NextApiRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
     if (body.length) {

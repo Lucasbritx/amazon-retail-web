@@ -3,7 +3,7 @@ import { GET, POST } from "./route";
 describe("Orders API", () => {
   describe("GET", () => {
     it("should return all orders when no ID is provided", async () => {
-      const req = { query: {} } as any;
+      const req = new Request("http://localhost/api/orders"); // sem query param
       const res = await GET(req);
 
       expect(res.status).toBe(200);
@@ -12,7 +12,7 @@ describe("Orders API", () => {
     });
 
     it("should return a specific order when a valid ID is provided", async () => {
-      const req = { query: { id: "1" } } as any;
+      const req = new Request("http://localhost/api/orders?id=1"); // com query param
       const res = await GET(req);
 
       expect(res.status).toBe(200);
@@ -22,7 +22,7 @@ describe("Orders API", () => {
     });
 
     it("should return 404 when an order with the given ID does not exist", async () => {
-      const req = { query: { id: "999" } } as any;
+      const req = new Request("http://localhost/api/orders?id=999");
       const res = await GET(req);
 
       expect(res.status).toBe(404);
@@ -33,15 +33,22 @@ describe("Orders API", () => {
 
   describe("POST", () => {
     it("should create a new order when a valid body is provided", async () => {
-      const req = {
-        json: async () => [
-          {
-            name: "New Product",
-            price: 200,
-            img: "https://picsum.photos/200/300",
-          },
-        ],
-      } as any;
+      const body = JSON.stringify([
+        {
+          name: "New Product",
+          price: 200,
+          img: "https://picsum.photos/200/300",
+        },
+      ]);
+
+      const req = new Request("http://localhost/api/orders", {
+        method: "POST",
+        body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       const res = await POST(req);
 
       expect(res.status).toBe(201);
@@ -50,7 +57,14 @@ describe("Orders API", () => {
     });
 
     it("should return 400 when the body is invalid or empty", async () => {
-      const req = { json: async () => [] } as any;
+      const req = new Request("http://localhost/api/orders", {
+        method: "POST",
+        body: JSON.stringify([]),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       const res = await POST(req);
 
       expect(res.status).toBe(400);
