@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,7 +15,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@module-federation/nextjs-mf": "^8.8.27",
     "classnames": "^2.5.1",
-    "next": "15.2.3",
+    "next": "^13.4.19",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
@@ -43,6 +43,7 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "^5.99.8"
   }
 }
