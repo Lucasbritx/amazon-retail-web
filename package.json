@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@module-federation/nextjs-mf": "^8.8.27",
     "classnames": "^2.5.1",
     "next": "15.2.3",
     "react": "^19.0.0",
