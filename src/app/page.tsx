@@ -4,6 +4,7 @@ import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { getProducts } from "./service/getProducts";
 import Button from "@/components/Button";
+import { Input } from "rollup-ds-poc";
 
 export default function Home() {
   const { addToCart } = useCart();
@@ -18,6 +19,7 @@ export default function Home() {
 
   return (
     <div className="">
+      <Input placeholder="Input from rollup DS"/>
       {products.length && (
         <div className="flex gap-2 p-4 flex-wrap">
           {products?.map((product: any) => (
@@ -37,9 +39,10 @@ export default function Home() {
         className="fixed bottom-0 right-0 m-4 bg-white hover:bg-gray-200 hover:opacity-100"
         onClick={() => {
           window.location.href = "/newProduct";
-        }}>
+        }}
+      >
         Add New Product
-        </Button>
+      </Button>
     </div>
   );
 }
