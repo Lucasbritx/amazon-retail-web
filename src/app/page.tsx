@@ -4,7 +4,7 @@ import Card from "@/components/Card";
 import { useCart } from "@/context/CartContext";
 import { getProducts } from "./service/getProducts";
 import Button from "@/components/Button";
-import { Input } from "rollup-ds-poc";
+import { Input, Modal } from "rollup-ds-poc";
 
 export default function Home() {
   const { addToCart } = useCart();
@@ -20,6 +20,12 @@ export default function Home() {
   return (
     <div className="">
       <Input placeholder="Input from rollup DS"/>
+      <Modal isOpen={true} onClose={() => {}}>
+        <div className="p-4">
+          <h2 className="text-lg font-bold">Welcome to the Product Page</h2>
+          <p className="mt-2">Here you can find a variety of products to add to your cart.</p>
+        </div>
+      </Modal>
       {products.length && (
         <div className="flex gap-2 p-4 flex-wrap">
           {products?.map((product: any) => (
