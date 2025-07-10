@@ -5,6 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { getProducts } from "./service/getProducts";
 import Button from "@/components/Button";
 import { Input, Modal } from "rollup-ds-poc";
+import "rollup-ds-poc/dist/index.css";
 
 export default function Home() {
   const { addToCart } = useCart();
