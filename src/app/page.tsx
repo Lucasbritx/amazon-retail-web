@@ -5,6 +5,8 @@ import { useCart } from "@/context/CartContext";
 import { getProducts } from "./service/getProducts";
 import { Input, Modal, Button } from "rollup-ds-poc";
 import "rollup-ds-poc/modal";
+import "rollup-ds-poc/button";
+import "rollup-ds-poc/input";
 
 export default function Home() {
   const { addToCart } = useCart();
@@ -22,7 +24,6 @@ export default function Home() {
     <div className="">
       <Button
         title="Open Modal"
-        className="bg-white hover:bg-gray-200 hover:opacity-100"
         onClick={() => {
           setIsOpen(true);
         }}
